@@ -133,14 +133,14 @@ onMounted(() => {
     window.addEventListener('scroll', handleScroll);
 });
 
-const srcImage = ref("/src/assets/img/projet/" + projet.value.image[0]); 
+const srcImage = ref("../assets/img/projet/" + projet.value.image[0]); 
 let indice = 0; 
 function clickImage() {
     indice ++; 
     if (indice > projet.value.image.length - 1) {
         indice = 0; 
     }
-    srcImage.value = "/src/assets/img/projet/" + projet.value.image[indice]; 
+    srcImage.value = "../assets/img/projet/" + projet.value.image[indice]; 
 }
 </script>
 

@@ -4,7 +4,7 @@
         @mouseout="setMouseOutTete">
         <div class="enTeteTechno"
         :style="styleTete">
-            <img :src="`/src/assets/img/techno/${techno.image}`">
+            <img :src="`../assets/img/techno/${techno.image}`">
             <p> {{ techno.nom }} </p>
         </div>
         <div class="corpsTechno">
