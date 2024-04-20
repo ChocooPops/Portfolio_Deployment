@@ -133,14 +133,18 @@ onMounted(() => {
     window.addEventListener('scroll', handleScroll);
 });
 
-const srcImage = ref("src/assets/img/projet/" + projet.value.image[0]); 
+const srcImage = ref(getImageUrl(projet.value.image[0])); 
 let indice = 0; 
 function clickImage() {
     indice ++; 
     if (indice > projet.value.image.length - 1) {
         indice = 0; 
     }
-    srcImage.value = "src/assets/img/projet/" + projet.value.image[indice]; 
+    srcImage.value = getImageUrl(projet.value.image[indice]); 
+}
+
+function getImageUrl(image) {
+  return new URL(`../assets/img/projet/${image}`, import.meta.url).href;
 }
 </script>
 

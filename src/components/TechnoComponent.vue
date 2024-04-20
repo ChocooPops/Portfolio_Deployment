@@ -4,7 +4,7 @@
         @mouseout="setMouseOutTete">
         <div class="enTeteTechno"
         :style="styleTete">
-            <img :src="`src/assets/img/techno/${techno.image}`">
+            <img :src="getImageUrl(techno.image)">
             <p> {{ techno.nom }} </p>
         </div>
         <div class="corpsTechno">
@@ -45,6 +45,10 @@ function setMouseOverTete() {
 }
 function setMouseOutTete() {
     styleTete.backgroundColor = "#292B2D";
+}
+
+function getImageUrl(image) {
+  return new URL(`../assets/img/techno/${image}`, import.meta.url).href;
 }
 </script>
 

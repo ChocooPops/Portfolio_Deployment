@@ -30,8 +30,7 @@
             <img src="../assets/img/accueil/fleche.png" id="btGauche" class="boutonFleche">
             <img src="../assets/img/accueil/fleche.png" id="btDroite" class="boutonFleche">
             <div class="containerAccueil" id="containerAccueil" :style="styleContainer">
-                <img v-for="k in accueil.imageCarrousel" 
-                    src="@/assets/img/accueil/citrouille.png">
+                <img v-for="image in accueil.imageCarrousel" :src="getImageUrl(image)" :key="image">
             </div>
         </div>
     </section>
@@ -45,7 +44,10 @@ const accueil = ref(null);
 accueil.value = props.data.Accueil; 
 const styleContainer = reactive({}); 
 styleContainer.gridTemplate = "100% / repeat(" + accueil.value.imageCarrousel.length + ", 100%)"; 
-const image = ref(null); 
+
+function getImageUrl(image) {
+  return new URL(`../assets/img/accueil/${image}`, import.meta.url).href;
+}
 
 onMounted(() => {
     //CONFIGURATION DE LA BARRE DU MENU //
