@@ -31,7 +31,7 @@
             <img src="../assets/img/accueil/fleche.png" id="btDroite" class="boutonFleche">
             <div class="containerAccueil" id="containerAccueil" :style="styleContainer">
                 <img v-for="k in accueil.imageCarrousel" 
-                    :src="`/assets/img/accueil/${k}`">
+                    src="@/assets/img/accueil/citrouille.png">
             </div>
         </div>
     </section>
