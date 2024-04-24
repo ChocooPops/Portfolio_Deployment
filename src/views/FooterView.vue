@@ -5,7 +5,6 @@
                 <p>Contact</p>
                 <ul>
                     <li>Mail : rahmaninahil@gmail.com</li>
-                    <li>Téléphone : 06 99 48 12 66</li>
                     <li>GitHub : <a href="https://github.com/ChocooPops">https://github.com/ChocooPops</a></li>
                     <li>Linkedin : <a
                             href="https://www.linkedin.com/in/nahil-rahmani-964507251">https://www.linkedin.com/in/nahil-rahmani-964507251</a>
