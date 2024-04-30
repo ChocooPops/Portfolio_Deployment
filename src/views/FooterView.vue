@@ -56,4 +56,39 @@
     font-family: Amplify;
     font-size: 1.9vw;
 }
+
+
+@media  screen and (max-width: 900px) {
+    .contact {
+        font-size: 5vw;
+        margin-left: 5vw;
+        margin-top: 6.5vw;
+    }
+    .contact>ul {
+        font-size: 2.2vw;
+        margin-left: 0;
+    }
+
+    .credit {
+        margin-top: 7vw;
+        margin-bottom: 1.5vw;
+        font-size: 1.5vw;
+        text-align: right;
+        margin-right: 2vw;
+    }
+
+    .nomFin {
+        display: inline;
+        font-family: Amplify;
+        font-size: 3vw;
+    }
+
+    .fin {
+        background-color: black;
+        width: 100%;
+        height: auto;
+        padding-bottom: 2vw;
+    }
+
+}
 </style>

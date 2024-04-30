@@ -253,4 +253,62 @@ function getImageUrl(image) {
     cursor: pointer;
     transition: 0.3s background-color;
 }
+
+@media  screen and (max-width: 700px) {
+    .projet {
+        height: 60vw;
+        width: 80vw;
+        display: grid;
+        grid-template: 20% 80% / 58% 42%;
+        margin-bottom: 35px;
+    }
+    .teteProjet {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 4.5vw; 
+        background-color: #292B2D;
+        border: solid 3px #363B42;
+        border-radius: 5px;
+        transition: 0.3s background-color;
+        cursor: pointer;
+    }
+    .corpsDescription>button {
+        color: white;
+        font-family: Cascadia Code;
+        font-size: 3vw;
+        background-color: #292B2D;
+        border: solid #363B42 2px;
+        border-radius: 5px;
+        width: auto;
+        cursor: pointer;
+        transition: 0.3s background-color;
+        padding-inline: 4vw;
+        padding-block: 1vw;
+        margin-bottom: 1.5vw;
+    }
+
+    .corpsDescription>p:first-child {
+        font-size: 4vw;
+        height: 1%;
+    }
+    .corpsDescription>p:nth-child(2) {
+        font-size: 2vw;
+        height: 90%;
+        text-align: left;
+        overflow: scroll;
+        margin-right: 1vw;
+    }
+    .centrageImgProjet>img {
+        max-width: 80%;
+        max-height: 80%;
+        height: auto;
+        width: auto;
+        border: solid 3px #363B42;
+        transition: 0.5s max-width, 0.5s max-height;
+    }
+}
 </style>

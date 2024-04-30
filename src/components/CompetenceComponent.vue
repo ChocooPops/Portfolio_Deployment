@@ -81,8 +81,8 @@ if (comp.value.id == 0) {
     border-top: solid #D9D9D9 0.15vw;
 }
 .btCompetence {
-    max-width: 30%;
-    max-height: 30%;
+    max-width: 40%;
+    max-height: 40%;
     height: auto;
     width: auto;
     transform: rotate(270deg);
@@ -100,5 +100,21 @@ if (comp.value.id == 0) {
 .descriptionCompetence>ul {
     font-size: 1vw;
     margin: 1vw;
+}
+
+.competence {
+    margin-inline: 25px;
+    font-size: 1.2vw;
+}
+
+@media  screen and (max-width: 900px) {
+    .descriptionCompetence>ul {
+        font-size: 1.7vw;
+        margin: 1vw;
+    }
+    .competence {
+        margin-inline: 25px;
+        font-size: 2vw;
+    }
 }
 </style>

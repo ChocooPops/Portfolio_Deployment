@@ -293,12 +293,16 @@ onMounted(() => {
 #btGauche {
     left: 0;
     margin-left: 20px;
+    height: 3.5vw;
+    width: 3.5vw;;
 }
 
 #btDroite {
     right: 0;
     transform: rotate(180deg);
     margin-right: 20px;
+    height: 3.5vw;
+    width: 3.5vw;
 }
 
 .containerAccueil {
@@ -316,4 +320,81 @@ onMounted(() => {
     width: 100%;
     object-fit: cover;
 }
+
+
+@media  screen and (max-width: 700px) {
+    #btGauche {
+        left: 0;
+        margin-left: 20px;
+        height: 30px;
+        width: 30px;
+    }
+    #btDroite {
+        right: 0;
+        transform: rotate(180deg);
+        margin-right: 20px;
+        height: 30px;
+        width: 30px;
+    }
+    .titre {
+        height: auto;
+        width: auto;
+        background-color: transparent;
+        border: white solid 3px;
+        color: white;
+        font-family: Cascadia Code;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        border-radius: 60px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 7%;
+        margin-right: 4%;
+        z-index: 2;
+        transition: 0.3s color, 0.3s background-color linear;
+        cursor: pointer;
+    }
+    .titre>p {
+        text-align: center;
+        font-size: 4.2vw;
+        margin: 0;
+        padding-inline: 5vw;
+        padding-block: 1.8vw;
+    }
+    .barreBienvenue>p {
+        color: white;
+        text-align: center;
+        font-size: 2.5vw;
+        padding: 1.2vw;
+        font-family: Cascadia Code;
+    }
+    
+    .barreMenu {
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+        margin: 0;
+        color: white;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        transition: 0.7s background-color;
+        z-index: 3;
+    }
+
+    .nom {
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        font-family: Amplify;
+        font-size: 8vw;
+    }
+
+    .btMenu {
+        display: none
+    }
+
+}
+
 </style>

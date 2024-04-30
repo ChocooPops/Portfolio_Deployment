@@ -52,17 +52,13 @@ comp.value = props.data.Competences;
 .portefeuille {
     height: auto;
     width: auto;
-    margin-inline: 25%;
+    margin-inline: 22%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
     border: solid #D9D9D9 0.3vw;
     border-radius: 0.5vw;
-}
-.competence {
-    margin-inline: 25px;
-    font-size: 1.2vw;
 }
 .ligneCompetence {
     height: 100%;
@@ -73,25 +69,26 @@ comp.value = props.data.Competences;
     transition: 0.3s background-color;
     cursor: pointer;
 }
-.btCompetence {
-    max-width: 30%;
-    max-height: 30%;
-    height: auto;
-    width: auto;
-    transform: rotate(270deg);
-    cursor: pointer;
-    transition: 0.4s transform;
-}
-.descriptionCompetence {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    transition: 0.4s height;
-}
-.descriptionCompetence>ul {
-    font-size: 1vw;
-    margin: 1vw;
+
+@media  screen and (max-width: 900px) {
+    .introCompetence {
+        margin-inline: 5%;
+        font-size: 1.7vw;
+        text-align: center;
+        justify-content: center;
+        word-wrap: break-word;
+        margin-bottom: 1.5vw;
+    }
+    .portefeuille {
+        height: auto;
+        width: auto;
+        margin-inline: 7%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        overflow: hidden;
+        border: solid #D9D9D9 0.3vw;
+        border-radius: 0.5vw;
+    }
 }
 </style>

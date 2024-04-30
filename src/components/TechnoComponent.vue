@@ -109,4 +109,73 @@ function getImageUrl(image) {
     transition: 0.3s background-color;
     cursor: pointer;
 }
+
+.enTeteTechno>p {
+    font-size: 200%;
+}
+
+.enTeteTechno>img {
+    max-width: 80%;
+    max-height: 80%;
+    height: auto;
+    width: auto;
+    padding-right: 15px;
+}
+
+@media  screen and (max-width: 700px) {
+    .techno {
+        min-width: 0;
+        min-height: 0;
+        width: 45vw;
+        height: 30vw;
+        display: grid;
+        grid-template: 30% 70% / 1fr;
+        border-radius: 5px;
+        border: solid #363B42 2px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    .enTeteTechno>p {
+        font-size: 4vw;
+    }
+    .corpsTechno>button {
+        height: auto;
+        width: 60%;
+        color: white;
+        font-family: Cascadia Code;
+        background-color: #292B2D;
+        border: solid #363B42 2px;
+        border-radius: 5px;
+        font-size: 2.5vw;
+        padding-block: 3px;
+        transition: 0.3s background-color;
+        cursor: pointer;
+    }
+    .corpsTechno {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #262626;
+        border-top: solid #363B42 2px;
+        box-sizing: border-box;
+    }
+    .corpsTechno>p {
+        width: 90%;
+        height: 50%;
+        text-align: center;
+        font-size: 2.2vw;
+        overflow: scroll;
+        margin-bottom: 0;
+    }
+    .enTeteTechno>img {
+        max-width: 80%;
+        max-height: 80%;
+        height: auto;
+        width: auto;
+        padding-right: 2vw;
+    }
+}
 </style>

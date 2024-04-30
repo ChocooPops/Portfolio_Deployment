@@ -94,45 +94,38 @@ techno.value = props.data.Technologies;
     margin-bottom: 2.5vw;
 }
 
-.techno {
-    height: 10vw;
-    width: 16vw;
-    min-width: 380px;
-    min-height: 230px;
-    display: grid;
-    grid-template: 30% 70% / 1fr;
-    border-radius: 5px;
-    border: solid #363B42 3px;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.enTeteTechno {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #292B2D;
-}
-
-.enTeteTechno>p {
-    font-size: 200%;
-}
-
-.enTeteTechno>img {
-    max-width: 80%;
-    max-height: 80%;
-    height: auto;
-    width: auto;
-    padding-right: 15px;
-}
-
 .degrade2 {
     width: 100%;
     height: 6vw;
     background: linear-gradient(180deg, #303030, #262626);
     margin: 0;
     padding: 0;
+}
+
+@media  screen and (max-width: 700px) {
+    .titreTechnologie {
+        font-size: 4.2vw;
+        text-align: left;
+        margin-left: 6vw;
+    }
+    .technoListe {
+        display: flex;
+        justify-content: center;
+        align-items: left;
+        flex-wrap: wrap;
+        row-gap: 2vw;
+        column-gap: 2vw;
+        margin-bottom: 2.5vw;
+    }
+    .barreSeparation {
+        background-color: #D9D9D9;
+        height: 0.2vw;
+        width: 90%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2vh;
+        margin-top: 1.2vh;
+    }
 }
 </style>
