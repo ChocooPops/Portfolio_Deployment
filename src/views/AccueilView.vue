@@ -3,7 +3,7 @@
         <div class="barreBienvenue">
             <p>Bienvenue sur mon portfolio</p>
         </div>
-        <div class="barreMenu" id="barreMenu">
+        <div class="barreMenu" id="barreMenu" :style="barreMenu">
             <p class="nom"> Nahil </p>
             <div class="btMenu">
                 <strong>
@@ -23,14 +23,25 @@
                 </strong>
             </div>
         </div>
-        <div class="titre" id="titreMetier">
+        <div class="titre" id="titreMetier" 
+            @mouseover="mouseOverMetier"
+            @mouseout="mouseOutMetier"
+            :style="titreMetier">
             <p> <strong> Futur Développeur Full-Stack </strong> </p>
         </div>
         <div class="carrousel">
-            <img src="../assets/img/accueil/fleche.png" id="btGauche" class="boutonFleche">
-            <img src="../assets/img/accueil/fleche.png" id="btDroite" class="boutonFleche">
+            <img src="../assets/img/accueil/fleche.png" id="btGauche" class="boutonFleche"
+                @click="clickBtGauche"
+                @mouseover="mouseOverBtGauche"
+                @mouseout="mouseOutBtGauche"
+                :style="btGauche">
+            <img src="../assets/img/accueil/fleche.png" id="btDroite" class="boutonFleche"
+                @click="clickBtDroite"
+                @mouseover="mouseOverBtDroite"
+                @mouseout="mouseOutBtDroite"
+                :style="btDroite">
             <div class="containerAccueil" id="containerAccueil" :style="styleContainer">
-                <img v-for="image in accueil.imageCarrousel" :src="getImageUrl(image)" :key="image">
+                <img v-for="image in accueil.imageCarrousel" :src="getImageUrl(image)" :key="image" ref="imgCarrousel">
             </div>
         </div>
     </section>
@@ -40,146 +51,127 @@
 import { onMounted, reactive, ref} from 'vue';
 
 const props = defineProps(["data"]); 
-const accueil = ref(null); 
-accueil.value = props.data.Accueil; 
-const styleContainer = reactive({}); 
+const accueil = ref(null);
+accueil.value = props.data.Accueil;
+const styleContainer = reactive({});
 styleContainer.gridTemplate = "100% / repeat(" + accueil.value.imageCarrousel.length + ", 100%)"; 
 
 function getImageUrl(image) {
   return new URL(`../assets/img/accueil/${image}`, import.meta.url).href;
 }
 
-onMounted(() => {
-    //CONFIGURATION DE LA BARRE DU MENU //
-    const barreMenu = document.getElementById("barreMenu");
-    function scrollFunction() {
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            barreMenu.style.position = "fixed";
-            barreMenu.style.top = "0";
-            barreMenu.style.backgroundColor = "black";
-        } else {
-            barreMenu.style.position = "absolute";
-            barreMenu.style.top = "unset";
-            barreMenu.style.backgroundColor = "transparent";
+// ACTION DE LA BARRE DU MENU AVEC DEFILEMENT DU SCROLLING
+const body = document.body; 
+const barreMenu = reactive({});
+function scrollFunction() {
+    if (body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        barreMenu.position = "fixed";
+        barreMenu.top = "0";
+        barreMenu.backgroundColor = "black";
+    } else {
+        barreMenu.position = "absolute";
+        barreMenu.top = "unset";
+        barreMenu.backgroundColor = "transparent";
+    }
+}
+
+    //MISE EN PLACE DU CARROUSEL
+const imgCarrousel = ref(null); 
+let indice = 0;
+let droite = true;
+let gauche = false;
+const nbImage = accueil.value.imageCarrousel.length; 
+
+function defilementCarrousel() {
+    var tailleImage = imgCarrousel.value[0].clientWidth; 
+    styleContainer.transform = "translateX(" + -(indice * tailleImage) + "px)";
+}
+
+    //STYLE ET ACTION DU BOUTON DROITE DU CARROUSEL
+const btDroite = reactive({});
+function clickBtDroite() {
+    if (indice < nbImage - 1) {
+        indice ++; 
+        stopTimerCarrousel(); 
+        startTimerCarrousel(); 
+        defilementCarrousel(); 
+        if (indice == nbImage - 1) {
+            droite = false;
+            gauche = true;
         }
     }
+}
 
-    function setActionScrollingBarreMenu() {
-        window.onscroll = function () { scrollFunction() };
+function mouseOverBtDroite() {
+    btDroite.opacity = "100%"; 
+}
+function mouseOutBtDroite() {
+    btDroite.opacity = "30%"; 
+}
+
+    //STYLE ET ACTION DU BOUTON DROITE DU CARROUSEL
+const btGauche = reactive({});
+function clickBtGauche() {
+    if (indice > 0) {
+        stopTimerCarrousel(); 
+        startTimerCarrousel(); 
+        indice--;
+        defilementCarrousel();
+        if (indice == 0) {
+            droite = true;
+            gauche = false;
+        }
     }
-    //FIN DE LA CONFIGURATION DE LA BARRE DU MENU //
+}
+function mouseOverBtGauche() {
+    btGauche.opacity = "100%"; 
+}
+function mouseOutBtGauche() {
+    btGauche.opacity = "30%"; 
+}
 
-    //CONFIGURATION DU CAROUSSEL//
-    const container = document.getElementById("containerAccueil");
-    var tailleImage = container.offsetWidth;
+    //STYLE DU TITRE METIER; 
+const titreMetier = reactive({}); 
+function mouseOutMetier() {
+    titreMetier.color = "white";
+    titreMetier.backgroundColor = "transparent";  
+}
+function mouseOverMetier() {
+    titreMetier.color = "black"; 
+    titreMetier.backgroundColor = "white"; 
+}
 
-    var indice = 0;
-    var droite = true;
-    var gauche = false;
-    var timerCarroussel;
-    const nbImage = accueil.value.imageCarrousel.length; 
-    const btFlecheDroite = document.getElementById("btDroite");
-    const btFlecheGauche = document.getElementById("btGauche");
-
-    const btFleche = document.querySelectorAll(".boutonFleche");
-
-    function setActionBtFlecheAccueil() {
-        btFleche.forEach(function (bt) {
-            bt.addEventListener("mouseover", function () {
-                bt.style.opacity = "100%";
-            });
-            bt.addEventListener("mouseout", function () {
-                bt.style.opacity = "30%";
-            })
-        });
-        btFlecheDroite.addEventListener("click", function () {
-            if (indice < nbImage - 1) {
-                indice++;
-                defilementCarroussel();
-                stopTimerCarroussel();
-                startTimerCarroussel();
-                if (indice == nbImage - 1) {
-                    droite = false;
-                    gauche = true;
-                }
-            }
-        });
-        btFlecheGauche.addEventListener("click", function () {
-            if (indice > 0) {
-                indice--;
-                defilementCarroussel();
-                stopTimerCarroussel();
-                startTimerCarroussel()
-                if (indice == 0) {
-                    droite = true;
-                    gauche = false;
-                }
-            }
-        });
-        window.addEventListener("resize", function () {
-            tailleImage = container.offsetWidth;
-            defilementCarroussel();
-            stopTimerCarroussel();
-            startTimerCarroussel();
-        });
-    }
-
-    function defilementCarroussel() {
-        container.style.transform = "translateX(" + -(indice * tailleImage) + "px)";
-    }
-    function startTimerCarroussel() {
-        timerCarroussel = setInterval(function () {
-            if (droite) {
-                indice++;
-                if (indice == nbImage - 1) {
-                    droite = false;
-                    gauche = true;
-                }
-            } else if (gauche) {
-                indice--;
-                if (indice == 0) {
-                    droite = true;
-                    gauche = false;
-                }
-            }
-            defilementCarroussel();
-        }, 4000);
-    }
-    function stopTimerCarroussel() {
-        clearInterval(timerCarroussel);
-    }
-    //FIN DE LA CONFIGURATION DU CAROUSSEL//
-    const btMenu = document.querySelectorAll(".btMenu strong p a");
-    function setActionBtMenu() {
-        btMenu.forEach(function (bt) {
-            bt.addEventListener("mouseover", function () {
-                bt.style.textDecoration = "underline";
-                bt.style.color = "rgb(213, 213, 213)";
-            });
-            bt.addEventListener("mouseout", function () {
-                bt.style.textDecoration = "none";
-                bt.style.color = "white";
-            });
-        });
-    }
-
-    const titre = document.getElementById("titreMetier");
-    titre.addEventListener("mouseover", function () {
-        titre.style.color = "black";
-        titre.style.backgroundColor = "white";
-    });
-    titre.addEventListener("mouseout", function () {
-        titre.style.color = "white";
-        titre.style.backgroundColor = "transparent";
-    });
-
-    setActionScrollingBarreMenu(); 
-    setActionBtMenu();  
-    setActionBtFlecheAccueil(); 
-    startTimerCarroussel(); 
+onMounted(() => {
+    window.onscroll = function () { scrollFunction() };
+    window.addEventListener("resize", defilementCarrousel); 
 });
-</script>
 
+let timerCarrousel;
+function startTimerCarrousel() {
+    timerCarrousel = setInterval(function(){
+        if(droite) {
+            indice ++; 
+            defilementCarrousel(); 
+            if (indice == nbImage - 1) {
+                droite = false;
+                gauche = true;
+            }
+        } else if (gauche) {
+            indice --; 
+            defilementCarrousel(); 
+            if (indice == 0) {
+                droite = true;
+                gauche = false;
+            }
+        }
+    }, 3000)
+}
+
+function stopTimerCarrousel() {
+    clearInterval(timerCarrousel); 
+}
+startTimerCarrousel(); 
+</script>
 
 <style>
 #accueil {
@@ -321,6 +313,10 @@ onMounted(() => {
     object-fit: cover;
 }
 
+.btMenu > strong > p > a:hover {
+    text-decoration: underline;
+    color:rgb(213, 213, 213);
+}
 
 @media  screen and (max-width: 700px) {
     #btGauche {

@@ -13,7 +13,9 @@
             </p>
             <div class="passion">
                 <div class="cinema">
-                    <img src="../assets/img/profil/setup.jpeg" alt="Mon Image" id="imgSetup">
+                    <img src="../assets/img/profil/setup.jpeg" alt="Mon Image" id="imgSetup" ref="imgSetup"
+                        @mouseover="mouseOverSetup"
+                        @mouseout="mouseOutSetup">
                     <div class="cinemaText">
                         <p class="sousTitre">Cinéma / <a class="noir">Photographie</a></p>
                         <p class="texteProfil">La capacité qu’a le cinéma à capturer l’imagination et à évoquer des
@@ -24,14 +26,20 @@
                             immersives et mémorables.
                         </p>
                     </div>
-                    <img src="../assets/img/profil/MadMax.png" alt="Mon Image" id="imgMadMax" style="margin-top: 5px;">
+                    <img src="../assets/img/profil/MadMax.png" alt="Mon Image" id="imgMadMax" style="margin-top: 5px;" ref="imgMadMax"
+                        @mouseover="mouseOverMadMax"
+                        @mouseout="mouseOutMadMax">
                 </div>
                 <div class="jeuVidéo">
                     <p class="sousTitre">Jeux <a class="noir">Vidéo</a></p>
                     <p class="texteProfil"> Découvrir des mondes riches et immersif. Vivre des récits épiques
                         et en étant à la fois spectateur et acteur principal. </p>
-                    <img src="../assets/img/profil/falcon.png" alt="Mon Image" id="imgFalcon">
-                    <img src="../assets/img/profil/zelda.jpeg" alt="Mon Image" id="imgZelda">
+                    <img src="../assets/img/profil/falcon.png" alt="Mon Image" id="imgFalcon" ref="imgFalcon"
+                        @mouseover="mouseOverFalcon"
+                        @mouseout="mouseOutFalcon">
+                    <img src="../assets/img/profil/zelda.jpeg" alt="Mon Image" id="imgZelda" ref="imgZelda"
+                        @mouseover="mouseOverZelda"
+                        @mouseout="mouseOutZelda">
                 </div>
             </div>
             <p class="sousTitre"> Mes <a class="noir">études</a></p>
@@ -47,7 +55,9 @@
                 développement d’applications afin de devenir un développeur Full-Stack.
             </p>
         </div>
-        <div class="descriptionImg" id="description1">
+        <div class="descriptionImg" id="description1" :style="descSetup"
+            @mouseover="mouseOverSetup"
+            @mouseout="mouseOutSetup">
             <p> Mon environnement de travail : <br>
                 C’est sur ce bureau que j’écris chaque ligne de code comme une pièce de <br>
                 puzzle à implémenter dans une de mes applications. Mon temps à faire de la <br>
@@ -58,7 +68,9 @@
                 immersion absolue, afin d’optimiser mon travail.
             </p>
         </div>
-        <div class="descriptionImg" id="description2">
+        <div class="descriptionImg" id="description2" :style="descMadMax"
+            @mouseover="mouseOverMadMax"
+            @mouseout="mouseOutMadMax">
             <p>La magie du cinéma réside dans son pouvoir à nous transporter dans le temps <br>
                 et l’espace, de nous faire vivre des vies que nous n’avons jamais vécues, <br>
                 enrichissant ainsi notre compréhension de l’humanité. La mise en scène <br>
@@ -76,7 +88,9 @@
                 perspective unique, agissant comme un miroir entre le réel et le fictif.
             </p>
         </div>
-        <div class="descriptionImg" id="description3">
+        <div class="descriptionImg" id="description3" :style="descFalcon"
+            @mouseover="mouseOverFalcon"
+            @mouseout="mouseOutFalcon">
             <p>
                 Exploration & Contemplation : <br>
                 Les jeux vidéo d’exploration et de <br>
@@ -98,7 +112,9 @@
                 perdre dans un monde onirique.
             </p>
         </div>
-        <div class="descriptionImg" id="description4">
+        <div class="descriptionImg" id="description4" :style="descZelda"
+            @mouseover="mouseOverZelda"
+            @mouseout="mouseOutZelda">
             <p> Je suis aussi à la recherche de nervosité, <br>
                 de dynamisme, ainsi qu’un état de <br>
                 concentration absolue, qui se reflètent <br>
@@ -115,118 +131,88 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, reactive, ref, watchEffect,  nextTick } from 'vue';
 
-onMounted(() => {
-    const desc = document.querySelectorAll(".descriptionImg");
-        const description1 = document.getElementById("description1");
-            const description2 = document.getElementById("description2");
-            const description3 = document.getElementById("description3");
-            const description4 = document.getElementById("description4");
+const imgSetup = ref(null);
+const imgFalcon = ref(null); 
+const imgZelda = ref(null); 
+const imgMadMax = ref(null); 
 
-            const imgSetup = document.getElementById("imgSetup");   // => Description_1 //
-            var tailleSetup;
-            const imgMadMax = document.getElementById("imgMadMax"); // => Description_2 //
-            var tailleMadMax;
-            const imgFalcon = document.getElementById("imgFalcon"); // => Description_3 //
-            var tailleFalcon;
-            const imgZelda = document.getElementById("imgZelda");  // => Description_4 //
-            var tailleZelda;
+const descSetup = reactive({}); 
+const descFalcon = reactive({});
+const descZelda = reactive({}); 
+const descMadMax = reactive({}); 
 
-            function actionImageProfil() {
-                imgSetup.addEventListener("mouseover", function () {
-                    setMouseOverImg(description1, tailleSetup, true);
-                });
-                imgSetup.addEventListener("mouseout", function () {
-                    setMouseOutImg(description1, true);
-                });
 
-                imgMadMax.addEventListener("mouseover", function () {
-                    setMouseOverImg(description2, tailleMadMax, true);
-                });
-                imgMadMax.addEventListener("mouseout", function () {
-                    setMouseOutImg(description2, true);
-                });
+const updateSizes = () => {
+    descSetup.height = imgSetup.value.clientHeight + "px"; 
+    descMadMax.height = imgMadMax.value.clientHeight + "px";
+    descFalcon.width = imgFalcon.value.clientWidth + "px"; 
+    descZelda.width = imgZelda.value.clientWidth + "px"; 
+};
 
-                imgFalcon.addEventListener("mouseover", function () {
-                    setMouseOverImg(description3, tailleFalcon, false);
-                });
-                imgFalcon.addEventListener("mouseout", function () {
-                    setMouseOutImg(description3, false);
-                });
+const updateCoordonnee = (style, ref) => {
+    style.left = ref.value.offsetLeft + "px"; 
+    style.top = ref.value.offsetTop + "px"; 
+}
 
-                imgZelda.addEventListener("mouseover", function () {
-                    setMouseOverImg(description4, tailleZelda, false);
-                });
-                imgZelda.addEventListener("mouseout", function () {
-                    setMouseOutImg(description4, false);
-                });
+const updateDescritionPosition = () => {
+    updateSizes(); 
+    updateCoordonnee(descSetup, imgSetup); 
+    updateCoordonnee(descFalcon, imgFalcon); 
+    updateCoordonnee(descMadMax, imgMadMax); 
+    updateCoordonnee(descZelda, imgZelda); 
+}
+onMounted(function() {
+    setTimeout(function() {
+        updateDescritionPosition(); 
+    }, 10); 
+    window.addEventListener('resize', updateDescritionPosition);
+})
 
-                desc.forEach(function (e) {
-                    var description;
-                    var bool;
-                    var liste;
-                    switch (e.id) {
-                        case "description1": description = e; liste = tailleSetup; bool = true;
-                            break;
-                        case "description2": description = e; liste = tailleMadMax; bool = true;
-                            break;
-                        case "description3": description = e; liste = tailleFalcon; bool = false;
-                            break;
-                        case "description4": description = e; liste = tailleZelda; bool = false;
-                            break;
-                    }
-                    e.addEventListener("mouseover", function () {
-                        setMouseOverImg(description, liste, bool);
-                    });
+function setOut(style, type) {
+    if (type) {
+        style.width = "0"; 
+    } else {
+        style.height = "0"; 
+    }
+}
+function setOver(style, ref, type) { 
+    if (type) {
+        style.width = ref.value.clientWidth + "px"
+    } else {
+        style.height = ref.value.clientHeight + "px"
+    }
+}
 
-                    e.addEventListener("mouseout", function () {
-                        setMouseOutImg(description, bool);
-                    });
-                });
-            }
+function mouseOverSetup() {
+    setOver(descSetup, imgSetup, true); 
+}
+function mouseOutSetup() {
+    setOut(descSetup, true); 
+}
 
-            function setMouseOverImg(description, taille, direction) {
-                if (direction) {
-                    description.style.width = taille.width;
-                } else {
-                    description.style.height = taille.height;
-                }
-            }
+function mouseOverMadMax() {
+    setOver(descMadMax, imgMadMax, true); 
+}
+function mouseOutMadMax() {
+    setOut(descMadMax, true); 
+}
 
-            function setMouseOutImg(description, direction) {
-                if (direction) {
-                    description.style.width = 0 + "px";
-                } else {
-                    description.style.height = 0 + "px";
-                }
-            }
+function mouseOverFalcon() {
+    setOver(descFalcon, imgFalcon, false); 
+}
+function mouseOutFalcon() {
+    setOut(descFalcon, false); 
+}
 
-            function setSizeAndCoordinate() {
-                tailleSetup = { width: imgSetup.offsetWidth + "px", height: imgSetup.offsetHeight + "px", left: imgSetup.offsetLeft + "px", top: imgSetup.offsetTop + "px" };
-                tailleMadMax = { width: imgMadMax.offsetWidth + "px", height: imgMadMax.offsetHeight + "px", left: imgMadMax.offsetLeft + "px", top: imgMadMax.offsetTop + "px" };
-                tailleFalcon = { width: imgFalcon.offsetWidth + "px", height: imgFalcon.offsetHeight + "px", left: imgFalcon.offsetLeft + "px", top: imgFalcon.offsetTop + "px" };
-                tailleZelda = { width: imgZelda.offsetWidth + "px", height: imgZelda.offsetHeight + "px", left: imgZelda.offsetLeft + "px", top: imgZelda.offsetTop + "px" };
+function mouseOverZelda() {
+    setOver(descZelda, imgZelda, false); 
+}
+function mouseOutZelda() {
+    setOut(descZelda, false); 
+}
 
-                description1.style.left = tailleSetup.left; description1.style.top = tailleSetup.top;
-                description1.style.height = tailleSetup.height;
-
-                description2.style.left = tailleMadMax.left; description2.style.top = tailleMadMax.top;
-                description2.style.height = tailleMadMax.height;
-
-                description3.style.left = tailleFalcon.left; description3.style.top = tailleFalcon.top;
-                description3.style.width = tailleFalcon.width;
-
-                description4.style.left = tailleZelda.left; description4.style.top = tailleZelda.top;
-                description4.style.width = tailleZelda.width;
-
-            }
-
-            setInterval(function () {
-                setSizeAndCoordinate();
-                actionImageProfil();
-            }, 10);
-}); 
 </script>
 
 <style>
