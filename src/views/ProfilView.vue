@@ -133,10 +133,10 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
 
-const imgSetup = ref(null);
-const imgFalcon = ref(null); 
-const imgZelda = ref(null); 
-const imgMadMax = ref(null); 
+const imgSetup = reactive({}); 
+const imgFalcon = reactive({}); 
+const imgZelda = reactive({}); 
+const imgMadMax = reactive({}); 
 
 const descSetup = reactive({}); 
 const descFalcon = reactive({});
@@ -144,30 +144,29 @@ const descZelda = reactive({});
 const descMadMax = reactive({}); 
 
 
-const updateSizes = () => {
+function updateCoordonnee(style, ref) {
+    style.left = ref.value.clientOffsetLeft + "px"; 
+    style.top = ref.value.clientOffsetTop + "px"; 
+}
+
+function updateSizes() {
     descSetup.height = imgSetup.value.clientHeight + "px"; 
     descMadMax.height = imgMadMax.value.clientHeight + "px";
     descFalcon.width = imgFalcon.value.clientWidth + "px"; 
     descZelda.width = imgZelda.value.clientWidth + "px"; 
+    updateCoordonnee(descSetup, imgSetup); 
+    updateCoordonnee(descMadMax, imgMadMax); 
+    updateCoordonnee(descFalcon, imgFalcon); 
+    updateCoordonnee(descZelda, imgZelda); 
 };
 
-const updateCoordonnee = (style, ref) => {
-    style.left = ref.value.offsetLeft + "px"; 
-    style.top = ref.value.offsetTop + "px"; 
-}
-
-const updateDescritionPosition = () => {
+setInterval(function() {
     updateSizes(); 
-    updateCoordonnee(descSetup, imgSetup); 
-    updateCoordonnee(descFalcon, imgFalcon); 
-    updateCoordonnee(descMadMax, imgMadMax); 
-    updateCoordonnee(descZelda, imgZelda); 
-}
+}, 10); 
+
 onMounted(function() {
-    setTimeout(function() {
-        updateDescritionPosition(); 
-    }, 10); 
-    window.addEventListener('resize', updateDescritionPosition);
+
+    window.addEventListener('resize', updateSizes);
 })
 
 function setOut(style, type) {
@@ -177,11 +176,16 @@ function setOut(style, type) {
         style.height = "0"; 
     }
 }
+
 function setOver(style, ref, type) { 
+    style.left = ref.value.clientOffsetLeft + "px"; 
+    style.top = ref.value.clientOffsetTop + "px"; 
     if (type) {
         style.width = ref.value.clientWidth + "px"
+        style.height = ref.value.clientHeight + "px"; 
     } else {
         style.height = ref.value.clientHeight + "px"
+        style.width = ref.value.clientWidth + "px"
     }
 }
 

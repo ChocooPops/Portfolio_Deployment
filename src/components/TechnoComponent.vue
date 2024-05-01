@@ -13,8 +13,7 @@
                 @mouseover="setMouseOver"
                 @mouseout="setMouseOut"
                 @click="setMouseClick"
-                :style="buttonDecouvrir"
-            > 
+                :style="buttonDecouvrir"> 
             Découvrir </button>
         </div>
     </div>
