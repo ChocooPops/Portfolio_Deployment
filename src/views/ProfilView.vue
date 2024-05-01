@@ -131,7 +131,7 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref, watchEffect,  nextTick } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 
 const imgSetup = ref(null);
 const imgFalcon = ref(null); 

@@ -36,7 +36,7 @@
 @media  screen and (max-width: 500px) {
     .titreSection {
         text-align: center;
-        font-size: 5vw;
+        font-size: 5.3vw;
     }
 }
 </style>

@@ -58,7 +58,7 @@
 }
 
 
-@media  screen and (max-width: 900px) {
+@media  screen and (max-width: 700px) {
     .contact {
         font-size: 5vw;
         margin-left: 5vw;
