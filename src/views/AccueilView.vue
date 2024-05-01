@@ -336,7 +336,7 @@ startTimerCarrousel();
         height: auto;
         width: auto;
         background-color: transparent;
-        border: white solid 3px;
+        border: white solid 2px;
         color: white;
         font-family: Cascadia Code;
         bottom: 0;
@@ -349,7 +349,7 @@ startTimerCarrousel();
         margin-right: 4%;
         z-index: 2;
         transition: 0.3s color, 0.3s background-color linear;
-        cursor: pointer;
+        cursor: pointer; 
     }
     .titre>p {
         text-align: center;

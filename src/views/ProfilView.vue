@@ -133,10 +133,10 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
 
-const imgSetup = reactive({}); 
-const imgFalcon = reactive({}); 
-const imgZelda = reactive({}); 
-const imgMadMax = reactive({}); 
+const imgSetup = ref(null);
+const imgFalcon = ref(null); 
+const imgZelda = ref(null); 
+const imgMadMax = ref(null); 
 
 const descSetup = reactive({}); 
 const descFalcon = reactive({});
@@ -144,28 +144,18 @@ const descZelda = reactive({});
 const descMadMax = reactive({}); 
 
 
-function updateCoordonnee(style, ref) {
-    style.left = ref.value.clientOffsetLeft + "px"; 
-    style.top = ref.value.clientOffsetTop + "px"; 
-}
-
 function updateSizes() {
     descSetup.height = imgSetup.value.clientHeight + "px"; 
     descMadMax.height = imgMadMax.value.clientHeight + "px";
     descFalcon.width = imgFalcon.value.clientWidth + "px"; 
     descZelda.width = imgZelda.value.clientWidth + "px"; 
-    updateCoordonnee(descSetup, imgSetup); 
-    updateCoordonnee(descMadMax, imgMadMax); 
-    updateCoordonnee(descFalcon, imgFalcon); 
-    updateCoordonnee(descZelda, imgZelda); 
 };
 
-setInterval(function() {
+setTimeout(function() {
     updateSizes(); 
 }, 10); 
 
 onMounted(function() {
-
     window.addEventListener('resize', updateSizes);
 })
 
@@ -178,8 +168,8 @@ function setOut(style, type) {
 }
 
 function setOver(style, ref, type) { 
-    style.left = ref.value.clientOffsetLeft + "px"; 
-    style.top = ref.value.clientOffsetTop + "px"; 
+    style.left = ref.value.offsetLeft + "px"; 
+    style.top = ref.value.offsetTop + "px"; 
     if (type) {
         style.width = ref.value.clientWidth + "px"
         style.height = ref.value.clientHeight + "px"; 
