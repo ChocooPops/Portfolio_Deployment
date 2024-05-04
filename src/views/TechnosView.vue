@@ -102,7 +102,7 @@ techno.value = props.data.Technologies;
     padding: 0;
 }
 
-@media  screen and (max-width: 700px) {
+@media  screen and (max-width: 850px) {
     .titreTechnologie {
         font-size: 4.4vw;
         text-align: left;

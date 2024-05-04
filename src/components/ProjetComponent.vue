@@ -254,7 +254,7 @@ function getImageUrl(image) {
     transition: 0.3s background-color;
 }
 
-@media  screen and (max-width: 700px) {
+@media  screen and (max-width: 850px) {
     .projet {
         height: 60vw;
         width: 80vw;
@@ -269,7 +269,7 @@ function getImageUrl(image) {
         justify-content: center;
         align-items: center;
         text-align: center;
-        font-size: 4.5vw; 
+        font-size: 4.4vw; 
         background-color: #292B2D;
         border: solid 3px #363B42;
         border-radius: 5px;

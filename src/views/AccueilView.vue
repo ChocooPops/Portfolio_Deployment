@@ -1,10 +1,19 @@
 <template>
     <section id="accueil">
         <div class="barreBienvenue">
-            <p>Bienvenue sur mon portfolio</p>
+            <p> Bienvenue sur mon portfolio </p>
         </div>
         <div class="barreMenu" id="barreMenu" :style="barreMenu">
-            <p class="nom"> Nahil </p>
+            <p class="nom" :style="nomStyle"> Nahil </p>
+            <div class="btBurger"
+                @click="clickBtBurger"
+                @mouseover="mouseOverBurger"
+                @mouseout="mouseOutBurger"
+                :style="btBurger">
+                <div class="barreBurger" :style="barreBurger1" ref="refBarre1"> </div>
+                <div class="barreBurger" :style="barreBurger2" ref="refBarre2"> </div>
+                <div class="barreBurger" :style="barreBurger3" ref="refBarre3"> </div>
+            </div>
             <div class="btMenu">
                 <strong>
                     <p> <a href="#accueil">Accueil</a></p>
@@ -42,6 +51,25 @@
                 :style="btDroite">
             <div class="containerAccueil" id="containerAccueil" :style="styleContainer">
                 <img v-for="image in accueil.imageCarrousel" :src="getImageUrl(image)" :key="image" ref="imgCarrousel">
+            </div>
+        </div>
+        <div class="menuBurger" :style="menuBurger" ref="menuBurgerTaille">
+            <div class="sectionBurger">
+                <strong>
+                    <p> <a href="#accueil">Accueil</a></p>
+                </strong>
+                <strong>
+                    <p> <a href="#profil">Profil</a></p>
+                </strong>
+                <strong>
+                    <p> <a href="#technologies">Technologies</a></p>
+                </strong>
+                <strong>
+                    <p> <a href="#projets">Projets</a></p>
+                </strong>
+                <strong>
+                    <p> <a href="#competences">Compétences</a></p>
+                </strong>
             </div>
         </div>
     </section>
@@ -171,6 +199,48 @@ function stopTimerCarrousel() {
     clearInterval(timerCarrousel); 
 }
 startTimerCarrousel(); 
+
+//MENU BURGER POUR TELEPHONE; 
+const menuBurger = reactive({}); 
+const nomStyle = reactive({}); 
+const menuBurgerTaille = ref(null); 
+const barreBurger1 = reactive({}); 
+const barreBurger2 = reactive({}); 
+const barreBurger3 = reactive({}); 
+const btBurger = reactive({}); 
+
+
+function clickBtBurger() {
+    if (menuBurgerTaille.value.clientWidth <=0 ) {
+        nomStyle.opacity = "0"; 
+        menuBurger.width = "56.5%"; 
+        barreBurger1.position = "absolute";
+        barreBurger2.position = "absolute";
+        barreBurger3.position = "absolute"; 
+        btBurger.left = "85%";
+        btBurger.transform = "translate(-85%)";
+        barreBurger1.transform = "rotate(45deg)";
+        barreBurger2.opacity = "0"
+        barreBurger3.transform = "rotate(135deg)";
+    } else {
+        nomStyle.opacity = "1"; 
+        menuBurger.width = "0"; 
+        barreBurger1.position = "relative";
+        barreBurger2.position = "relative";
+        barreBurger3.position = "relative";
+        barreBurger1.transform = "rotate(180deg)";
+        barreBurger2.opacity= "1"
+        barreBurger3.transform = "rotate(0deg)";
+        btBurger.left = "90%";
+        btBurger.transform = "translate(-90%)";
+    }
+}
+function mouseOverBurger() {
+
+}
+function mouseOutBurger() {
+
+}
 </script>
 
 <style>
@@ -209,7 +279,7 @@ startTimerCarrousel();
     align-items: center;
     position: absolute;
     transition: 0.7s background-color;
-    z-index: 3;
+    z-index: 4;
 }
 
 .btMenu {
@@ -318,13 +388,18 @@ startTimerCarrousel();
     color:rgb(213, 213, 213);
 }
 
-@media  screen and (max-width: 700px) {
+.btBurger {
+    display: none;
+}
+
+@media  screen and (max-width: 800px) {
     #btGauche {
         left: 0;
         margin-left: 20px;
         height: 30px;
         width: 30px;
     }
+
     #btDroite {
         right: 0;
         transform: rotate(180deg);
@@ -332,6 +407,7 @@ startTimerCarrousel();
         height: 30px;
         width: 30px;
     }
+
     .titre {
         height: auto;
         width: auto;
@@ -351,6 +427,7 @@ startTimerCarrousel();
         transition: 0.3s color, 0.3s background-color linear;
         cursor: pointer; 
     }
+
     .titre>p {
         text-align: center;
         font-size: 4.2vw;
@@ -358,6 +435,7 @@ startTimerCarrousel();
         padding-inline: 5vw;
         padding-block: 1.8vw;
     }
+
     .barreBienvenue>p {
         color: white;
         text-align: center;
@@ -365,32 +443,70 @@ startTimerCarrousel();
         padding: 1.2vw;
         font-family: Cascadia Code;
     }
-    
-    .barreMenu {
-        width: 100%;
-        height: auto;
-        background-color: transparent;
-        margin: 0;
-        color: white;
-        display: flex;
-        align-items: center;
-        position: absolute;
-        transition: 0.7s background-color;
-        z-index: 3;
-    }
 
     .nom {
         position: relative;
         left: 50%;
         transform: translate(-50%);
         font-family: Amplify;
-        font-size: 8vw;
+        font-size: 8.5vw;
+        transition: 0.3s opacity;
     }
 
     .btMenu {
         display: none
     }
 
+    .btBurger {
+        display: block;
+        position: absolute; 
+        left: 90%;
+        transform: translate(-90%);
+        font-family: Amplify;
+        font-size: 8vw;
+    }
+
+    .barreBurger {
+        width: 6vw;
+        height: 1vw;
+        border-radius: 2vw;
+        margin-bottom: 0.5vw;
+        background-color: white;
+        transition: 0.5s all ease;
+    }
+
+    .btBurger > .barreBurger:first-child  {
+        transform: rotate(180deg)
+    }
+
+    .menuBurger {
+        transition: 0.5s width;
+        right: 0;
+        top: 0; 
+        position: fixed;
+        height: 100%;
+        width: 0;
+        background: black;
+        z-index: 3;
+    }
+
+    .sectionBurger {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 14vw;
+        font-size: 4.2vw;
+    }
+
+    .sectionBurger > strong > p > a {
+        margin-left: 15%;
+    }
+
+    .sectionBurger > strong > p > a:hover {
+        text-decoration: underline;
+        color:rgb(213, 213, 213);
+    }
 }
 
 </style>

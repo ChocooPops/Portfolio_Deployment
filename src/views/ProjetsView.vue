@@ -76,7 +76,7 @@ projet.value = props.data.Projets;
 
 @media  screen and (max-width: 700px) {
     .typeProjet {
-        font-size: 4.5vw;
+        font-size: 4.7vw;
         text-align: left;
         margin-left: 10vw;
         margin-top: 4vh;

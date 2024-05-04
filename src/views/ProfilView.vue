@@ -143,7 +143,6 @@ const descFalcon = reactive({});
 const descZelda = reactive({}); 
 const descMadMax = reactive({}); 
 
-
 function updateSizes() {
     descSetup.height = imgSetup.value.clientHeight + "px"; 
     descMadMax.height = imgMadMax.value.clientHeight + "px";
