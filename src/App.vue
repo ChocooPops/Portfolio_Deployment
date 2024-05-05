@@ -33,7 +33,7 @@
 </template>
 
 <style>
-@media  screen and (max-width: 500px) {
+@media  screen and (max-width: 900px) {
     .titreSection {
         text-align: center;
         font-size: 5.3vw;

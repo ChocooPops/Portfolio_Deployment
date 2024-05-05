@@ -74,7 +74,7 @@ projet.value = props.data.Projets;
     padding: 0;
 }
 
-@media  screen and (max-width: 700px) {
+@media  screen and (max-width: 900px) {
     .typeProjet {
         font-size: 4.7vw;
         text-align: left;
