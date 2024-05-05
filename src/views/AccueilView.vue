@@ -467,10 +467,10 @@ function mouseOutBurger() {
     }
 
     .barreBurger {
-        width: 6vw;
-        height: 1vw;
+        width: 5vw;
+        height: 0.8vw;
         border-radius: 2vw;
-        margin-bottom: 0.5vw;
+        margin-bottom: 0.8vw;
         background-color: white;
         transition: 0.5s all ease;
     }
