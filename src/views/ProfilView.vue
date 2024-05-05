@@ -152,9 +152,10 @@ function updateSizes() {
 
 setTimeout(function() {
     updateSizes(); 
-}, 10); 
+}, 1); 
 
 onMounted(function() {
+    updateSizes(); 
     window.addEventListener('resize', updateSizes);
 })
 

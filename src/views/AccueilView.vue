@@ -7,8 +7,6 @@
             <p class="nom" :style="nomStyle"> Nahil </p>
             <div class="btBurger"
                 @click="clickBtBurger"
-                @mouseover="mouseOverBurger"
-                @mouseout="mouseOutBurger"
                 :style="btBurger">
                 <div class="barreBurger" :style="barreBurger1" ref="refBarre1"> </div>
                 <div class="barreBurger" :style="barreBurger2" ref="refBarre2"> </div>
@@ -50,7 +48,7 @@
                 @mouseout="mouseOutBtDroite"
                 :style="btDroite">
             <div class="containerAccueil" id="containerAccueil" :style="styleContainer">
-                <img v-for="image in accueil.imageCarrousel" :src="getImageUrl(image)" :key="image" ref="imgCarrousel">
+                <img v-for="image in accueil" :src="getImageUrl(image)" :key="image" ref="imgCarrousel">
             </div>
         </div>
         <div class="menuBurger" :style="menuBurger" ref="menuBurgerTaille">
@@ -76,17 +74,17 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref} from 'vue';
+import { onMounted, reactive, ref, watch, onUnmounted} from 'vue';
 
 const props = defineProps(["data"]); 
-const accueil = ref(null);
-accueil.value = props.data.Accueil;
+const accueil = ref(props.data.Accueil.imageCarrousel);
 const styleContainer = reactive({});
-styleContainer.gridTemplate = "100% / repeat(" + accueil.value.imageCarrousel.length + ", 100%)"; 
+styleContainer.gridTemplate = "100% / repeat(" + accueil.value.length + ", 100%)"; 
 
 function getImageUrl(image) {
   return new URL(`../assets/img/accueil/${image}`, import.meta.url).href;
 }
+
 
 // ACTION DE LA BARRE DU MENU AVEC DEFILEMENT DU SCROLLING
 const body = document.body; 
@@ -108,11 +106,13 @@ const imgCarrousel = ref(null);
 let indice = 0;
 let droite = true;
 let gauche = false;
-const nbImage = accueil.value.imageCarrousel.length; 
+const nbImage = accueil.value.length; 
 
 function defilementCarrousel() {
     var tailleImage = imgCarrousel.value[0].clientWidth; 
     styleContainer.transform = "translateX(" + -(indice * tailleImage) + "px)";
+    stopTimerCarrousel(); 
+    startTimerCarrousel(); 
 }
 
     //STYLE ET ACTION DU BOUTON DROITE DU CARROUSEL
@@ -120,8 +120,6 @@ const btDroite = reactive({});
 function clickBtDroite() {
     if (indice < nbImage - 1) {
         indice ++; 
-        stopTimerCarrousel(); 
-        startTimerCarrousel(); 
         defilementCarrousel(); 
         if (indice == nbImage - 1) {
             droite = false;
@@ -141,8 +139,6 @@ function mouseOutBtDroite() {
 const btGauche = reactive({});
 function clickBtGauche() {
     if (indice > 0) {
-        stopTimerCarrousel(); 
-        startTimerCarrousel(); 
         indice--;
         defilementCarrousel();
         if (indice == 0) {
@@ -168,11 +164,6 @@ function mouseOverMetier() {
     titreMetier.color = "black"; 
     titreMetier.backgroundColor = "white"; 
 }
-
-onMounted(() => {
-    window.onscroll = function () { scrollFunction() };
-    window.addEventListener("resize", defilementCarrousel); 
-});
 
 let timerCarrousel;
 function startTimerCarrousel() {
@@ -235,12 +226,35 @@ function clickBtBurger() {
         btBurger.transform = "translate(-90%)";
     }
 }
-function mouseOverBurger() {
 
+const windowWidth = ref(window.innerWidth); 
+const windowHeight = ref(window.innerHeight); 
+function updateImageCarrousel() {
+    if(windowWidth.value < windowHeight.value ) {
+        accueil.value = props.data.Accueil.imageCarrouselMobile; 
+    } else {
+        accueil.value = props.data.Accueil.imageCarrousel; 
+    }
 }
-function mouseOutBurger() {
 
-}
+watch(windowWidth, function() {
+    updateImageCarrousel() 
+})
+
+function updateSizeWindow() {
+    defilementCarrousel(); 
+    windowWidth.value = window.innerWidth;
+    windowHeight.value = window.innerHeight; 
+} 
+
+onMounted(() => {
+    window.onscroll = function () { scrollFunction() };
+    window.addEventListener("resize", updateSizeWindow); 
+    windowWidth.value = window.innerWidth;
+    windowHeight.value = window.innerHeight; 
+    updateImageCarrousel();  
+});
+
 </script>
 
 <style>

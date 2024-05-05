@@ -254,7 +254,7 @@ function getImageUrl(image) {
     transition: 0.3s background-color;
 }
 
-@media  screen and (max-width: 850px) {
+@media  screen and (max-width: 900px) {
     .projet {
         height: 60vw;
         width: 80vw;
