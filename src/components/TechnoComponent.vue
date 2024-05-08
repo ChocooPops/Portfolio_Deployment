@@ -63,6 +63,7 @@ function getImageUrl(image) {
     border: solid #363B42 3px;
     box-sizing: border-box;
     overflow: hidden;
+    margin-top: 1vw;
 }
 .enTeteTechno {
     height: 100%;

@@ -76,11 +76,11 @@ projet.value = props.data.Projets;
 
 @media  screen and (max-width: 900px) {
     .typeProjet {
-        font-size: 4.7vw;
+        font-size: 4.5vw;
         text-align: left;
         margin-left: 10vw;
-        margin-top: 4vh;
-        margin-bottom: 3vh;
+        margin-top: 5vw;
+        margin-bottom: 5vw;
         text-decoration: underline 2px;
     }
 }
