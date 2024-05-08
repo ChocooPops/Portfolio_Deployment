@@ -121,7 +121,7 @@ function getImageUrl(image) {
     padding-right: 15px;
 }
 
-@media  screen and (max-width: 700px) {
+@media  screen and (max-width: 800px) {
     .techno {
         min-width: 0;
         min-height: 0;

@@ -406,7 +406,7 @@ onMounted(() => {
     display: none;
 }
 
-@media  screen and (max-width: 800px) {
+@media  screen and (max-width: 650px) {
     #btGauche {
         left: 0;
         margin-left: 20px;
