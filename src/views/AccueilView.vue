@@ -74,7 +74,7 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref, watch, onUnmounted} from 'vue';
+import { onMounted, reactive, ref, watch} from 'vue';
 
 const props = defineProps(["data"]); 
 const accueil = ref(props.data.Accueil.imageCarrousel);
@@ -204,7 +204,7 @@ const btBurger = reactive({});
 function clickBtBurger() {
     if (menuBurgerTaille.value.clientWidth <=0 ) {
         nomStyle.opacity = "0"; 
-        menuBurger.width = "56.5%"; 
+        menuBurger.width = "75%"; 
         barreBurger1.position = "absolute";
         barreBurger2.position = "absolute";
         barreBurger3.position = "absolute"; 

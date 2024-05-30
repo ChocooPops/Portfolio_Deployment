@@ -13,10 +13,15 @@
             @mouseover="setOverCorpsImg"
             @mouseout="setOutCorpsImg"
             :style="styleCorpsImg">
-            <div class="centrageImgProjet">
-                <img :src="srcImage"
-                    :style="styleImage"
-                    @click="clickImage">
+            <div class="ImageProjet">
+                <div class="centrageImgProjet">
+                    <img :src="srcImage"
+                        :style="styleImage"
+                        @click="clickImage">
+                </div>
+                <div class="cercleLegende">
+                    <div class="cercle" v-for="index in projet.image.length" :key="index" :style="getCercleStyle(index)"></div>
+                </div>
             </div>
         </div>
         <div class="corpsDescription"
@@ -135,12 +140,27 @@ onMounted(() => {
 
 const srcImage = ref(getImageUrl(projet.value.image[0])); 
 let indice = 0; 
+const selectedCercleIndex = ref(1);
+
+function getCercleStyle(index) {
+    if (index === selectedCercleIndex.value) {
+    return {
+      backgroundColor: 'black',
+    };
+  } else {
+    return {
+      backgroundColor: 'white',
+    };
+  }
+};
+
 function clickImage() {
     indice ++; 
     if (indice > projet.value.image.length - 1) {
         indice = 0; 
     }
     srcImage.value = getImageUrl(projet.value.image[indice]); 
+    selectedCercleIndex.value = indice + 1; 
 }
 
 function getImageUrl(image) {
@@ -218,6 +238,7 @@ function getImageUrl(image) {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
 }
 .centrageImgProjet>img {
     max-width: 80%;
@@ -227,6 +248,37 @@ function getImageUrl(image) {
     border: solid 5px #363B42;
     transition: 0.5s max-width, 0.5s max-height;
 }
+
+.ImageProjet {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template : 90% 10% / 100%;
+}
+
+.cercleLegende {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap : 100px;
+}
+
+.cercle {
+    max-width: 8.5px;
+    max-height: 8.5px;
+    min-height: 7px;
+    min-width: 7px;
+    height: 0.5vw;
+    width: 0.5vw;
+    background-color: #D9D9D9;
+    border-radius: 100%;
+    margin-left: 5px;
+    transition: all 0.3s;
+}
+
 .corpsDescription>p:first-child {
     font-size: 25px;
     height: 2%;
@@ -309,6 +361,18 @@ function getImageUrl(image) {
         width: auto;
         border: solid 3px #363B42;
         transition: 0.5s max-width, 0.5s max-height;
+    }
+    .cercle {
+        max-height: 6px;
+        max-width: 6px;
+        min-height: 5.5px;
+        min-width: 5.5px;
+        height: 1vw;
+        width: 1vw;
+        background-color: #D9D9D9;
+        border-radius: 100%;
+        margin-left: 5px;
+        transition: all 0.3s;
     }
 }
 </style>
