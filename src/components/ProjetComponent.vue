@@ -145,7 +145,7 @@ const selectedCercleIndex = ref(1);
 function getCercleStyle(index) {
     if (index === selectedCercleIndex.value) {
     return {
-      backgroundColor: 'black',
+      backgroundColor: '#393d45',
     };
   } else {
     return {
@@ -276,7 +276,7 @@ function getImageUrl(image) {
     background-color: #D9D9D9;
     border-radius: 100%;
     margin-left: 5px;
-    transition: all 0.3s;
+    transition: all 0.4s;
 }
 
 .corpsDescription>p:first-child {
@@ -372,7 +372,7 @@ function getImageUrl(image) {
         background-color: #D9D9D9;
         border-radius: 100%;
         margin-left: 5px;
-        transition: all 0.3s;
+        transition: all 0.4s;
     }
 }
 </style>
