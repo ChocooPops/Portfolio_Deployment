@@ -52,7 +52,7 @@ comp.value = props.data.Competences;
 .portefeuille {
     height: auto;
     width: auto;
-    margin-inline: 22%;
+    margin-inline: 20%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -73,7 +73,7 @@ comp.value = props.data.Competences;
 @media  screen and (max-width: 900px) {
     .introCompetence {
         margin-inline: 5%;
-        font-size: 1.7vw;
+        font-size: 2vw;
         text-align: center;
         justify-content: center;
         word-wrap: break-word;
@@ -82,7 +82,7 @@ comp.value = props.data.Competences;
     .portefeuille {
         height: auto;
         width: auto;
-        margin-inline: 7%;
+        margin-inline: 5%;
         display: flex;
         justify-content: center;
         flex-direction: column;

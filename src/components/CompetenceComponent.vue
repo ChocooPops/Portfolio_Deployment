@@ -109,12 +109,12 @@ if (comp.value.id == 0) {
 
 @media  screen and (max-width: 900px) {
     .descriptionCompetence>ul {
-        font-size: 1.7vw;
+        font-size: 1.9vw;
         margin: 1vw;
     }
     .competence {
         margin-inline: 25px;
-        font-size: 2vw;
+        font-size: 2.2vw;
     }
 }
 </style>

@@ -3,14 +3,14 @@
     <div class="degrade"></div>
         <div class="projets">
             <p class="titreSection"> <strong>Mes projets</strong></p>
-            <p class="typeProjet"> Projets Majeurs : </p>
+            <p class="typeProjet"> Projets Majeurs Académiques : </p>
             <div class="mesProjets" id="mesProjetsMajeurs">
                 <ProjetComponent v-for="k in projet.ProjetsMajeurs" :data="k"/>
             </div>
             <div class="centrageBarre">
                 <div class="barreSeparation"></div>
             </div>
-            <p class="typeProjet"> Projets Mineurs :</p>
+            <p class="typeProjet"> Projets Mineurs Académiques :</p>
             <div class="mesProjets" id="mesProjetsMineurs">
                 <ProjetComponent v-for="k in projet.ProjetsMineurs" :data="k"/>
             </div>
