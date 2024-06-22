@@ -43,6 +43,13 @@ techno.value = props.data.Technologies;
               <div class="centrageBarre">
                   <div class="barreSeparation"></div>
               </div>
+              <p class="titreTechnologie">Outils : </p>
+              <div class="technoListe" id="frameworkTechno">
+                <TechnoComponent v-for="k in techno.OutilTechno" :data="k"/>
+              </div>
+              <div class="centrageBarre">
+                  <div class="barreSeparation"></div>
+              </div>
           </div>
       </section>
 </template>
