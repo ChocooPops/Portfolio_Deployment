@@ -178,4 +178,62 @@ function getImageUrl(image) {
         padding-right: 2vw;
     }
 }
+
+@media screen, (min-width: 1366px) {
+    .techno {
+        min-width: 0;
+        min-height: 0;
+        width: 270px;
+        height: 180px;
+        display: grid;
+        grid-template: 30% 70% / 1fr;
+        border-radius: 5px;
+        border: solid #363B42 3px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    .enTeteTechno>p {
+        font-size: 25px;
+    }
+    .corpsTechno>button {
+        height: auto;
+        width: 60%;
+        color: white;
+        font-family: Cascadia Code;
+        background-color: #292B2D;
+        border: solid #363B42 3px;
+        border-radius: 5px;
+        font-size: 15px;
+        padding-block: 3px;
+        transition: 0.3s background-color;
+        cursor: pointer;
+    }
+    .corpsTechno {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #262626;
+        border-top: solid #363B42 3px;
+        box-sizing: border-box;
+    }
+    .corpsTechno>p {
+        width: 90%;
+        height: 50%;
+        text-align: center;
+        font-size: 13px;
+        overflow: scroll;
+        margin-bottom: 0;
+    }
+    .enTeteTechno>img {
+        max-width: 80%;
+        max-height: 80%;
+        height: auto;
+        width: auto;
+        padding-right: 10px;
+    }
+}
 </style>
+

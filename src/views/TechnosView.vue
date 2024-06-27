@@ -135,4 +135,16 @@ techno.value = props.data.Technologies;
         margin-top: 1.2vh;
     }
 }
+
+@media screen, (min-width: 1366px) {
+    .technoListe {
+        display: flex;
+        justify-content: center;
+        align-items: left;
+        flex-wrap: wrap;
+        row-gap: 11px;
+        column-gap: 11px;
+        margin-bottom: 2.5vw;
+    }
+}
 </style>
