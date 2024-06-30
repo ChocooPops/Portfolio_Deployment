@@ -179,7 +179,7 @@ function getImageUrl(image) {
     }
 }
 
-@media screen, (max-width: 1366px) {
+@media (max-width: 1600px) and (min-width: 400px) {
     .techno {
         min-width: 0;
         min-height: 0;

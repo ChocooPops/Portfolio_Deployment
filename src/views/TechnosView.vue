@@ -136,7 +136,7 @@ techno.value = props.data.Technologies;
     }
 }
 
-@media screen, (min-width: 1366px) {
+@media (max-width: 1600px) and (min-width: 400px) {
     .technoListe {
         display: flex;
         justify-content: center;
