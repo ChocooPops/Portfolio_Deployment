@@ -34,7 +34,7 @@
                 @mouseover="setOverButton"
                 @mouseout="setOutButton"
                 @click="setClickButton"
-                :style="styleButton"> Télécharger </button>
+                :style="styleButton"> Lien Github </button>
         </div>
     </div>
 </template>
